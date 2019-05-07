@@ -136,3 +136,40 @@ onChange = (e) => {
     ```
 
 ### 1-10 ref
+* DOM에 직접 접근하고 싶을 때 사용
+* [DOM에 직접 접근이 필요한 상황](https://velopert.com/1148)
+    1. input / textarea 등에 포커스를 해야 할때 (강의 부분)
+    2. 특정 DOM 의 크기를 가져와야 할 때
+    3. 특정 DOM 에서 스크롤 위치를 가져오거나 설정을 해야 할 때
+    4. 외부 라이브러리 (플레이어, 차트, 캐로절 등) 을 사용 할 때
+
+* `this.input.focus();`
+    * focus를 하고 싶을 때
+* `input;`
+    * render 함수 바로 위에
+* `<input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange}/>`
+    * focus를 주고 싶은 tag
+
+### `focus.html`
+* `this.setState` 
+    * 1
+    ```
+    this.setState({
+
+     });
+     ``` 
+     
+     * 2
+    ```
+    this.setState((prevState) => {
+        return {
+
+        };
+    });
+* ref
+    * focus를 주고 싶은 tag에게
+        * `this.input = f;`
+    * focus를 주고 싶은 시점
+        * `this.input.focus();`
+    * render 함수 위에
+        * `input;`

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+    <head>
+            <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+            <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+            <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <script type="text/babel">
+                class Focus extends React.Component {
+                    constructor(props) {
+                        super(props);
+                        this.state = {
+                            title:'',
+                            context:'',
+                            result:'',
+                        };
+                    }
+
+                    onChange = (e) => {
+                        this.setState({[e.target.name] : e.target.value});
+                    }
+
+                    onSubmit = (e) => {
+                        e.preventDefault();
+                        this.setState((prevState) => {
+                            return {
+                                result: prevState.result+'...'+prevState.title +'-'+ prevState.context,
+                                title: '',
+                                context: ''
+                            };
+                        });
+                        this.input.focus();
+                    }
+
+                    onRefInput = (f) => {
+                        this.input = f;
+                    }
+
+                    input;
+
+                    render() {
+                        return (
+                            <React.Fragment>
+                                <h1>Post</h1>
+                                <form onSubmit={this.onSubmit}>
+                                    제목: <input type="text" name="title" value={this.state.title} onChange={this.onChange} ref={this.onRefInput}></input>
+                                    <br></br>
+                                    내용: <input type="text" name="context" value={this.state.context} onChange={this.onChange}></input>
+                                    <br></br>
+                                    <button>제출</button>
+                                </form>
+                                {this.state.result}
+                            </React.Fragment>
+                        );
+                    }
+                }
+            </script>
+            <script type="text/babel">
+                ReactDOM.render(<Focus />, document.querySelector('#root'));
+            </script>
+        </div>
+    </body>
+</html>

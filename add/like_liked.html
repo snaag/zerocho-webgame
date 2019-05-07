@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+    <head>
+            <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+            <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+            <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+
+    <body>
+        <div id="root">
+            <script type="text/babel">
+                class LikeLiked extends React.Component {
+                    constructor(props) {
+                        super(props);
+                        this.state = {
+                            like : false,
+                        }
+                    }
+
+                    onClick = (e) => {
+                        this.setState({
+                            like : !this.state.like,
+                        });
+                    }
+
+                    render() {
+                        return (
+                            <button onClick={this.onClick}>{this.state.like ?'Like':'Liked'}</button>
+                        );
+                    }
+                }
+            </script>
+            <script type="text/babel">
+                ReactDOM.render(<LikeLiked />, document.querySelector('#root'));
+            </script>
+        </div>
+    </body>
+</html>

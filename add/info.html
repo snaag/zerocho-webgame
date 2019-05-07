@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+    <head>
+            <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+            <!-- react 스크립트 불러오기 -->
+            <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+            <!-- react dom 스크립트 불러오기 -->
+            <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+            <!-- babel 스크립트 불러오기 -->
+
+    </head>
+
+    <body>
+        <div id="root">
+            <script type="text/babel">
+                class Information extends React.Component{
+                    constructor(props) {
+                        super(props);
+                        this.state = {
+                            name: '',
+                            age: 0,
+                            text: '',
+                        }
+                    }
+
+                    onChange = (e) => {
+                        this.setState({ [e.target.name]: e.target.value });
+                    }
+
+                    onSubmit = (e) => {
+                        e.preventDefault();
+                        this.setState({
+                            text: (this.state.name).concat(this.state.age),
+                            name: '',
+                            age: 0,
+                        });
+                    }
+
+                    render() {
+                        return(
+                            <React.Fragment>
+                                <form onSubmit={this.onSubmit}>
+                                    <input type="number" name="age" value={this.state.age} onChange={this.onChange}/>
+                                    <input type="text" name="name" value={this.state.name} onChange={this.onChange} />
+                                    <button>입력</button>
+                                </form>
+                                <h3>{this.state.text}</h3>
+                            </React.Fragment>
+                        );
+                    }
+                }
+            
+            </script>
+            <script type="text/babel">
+                ReactDOM.render(<Information />, document.querySelector('#root'));
+            </script>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+    <head>
+            <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+            <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+            <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    </head>
+
+    <body>
+        <div id="root">
+            <script type="text/babel">
+                const Info = () => {
+                    const [name, setName] = React.useState('');
+                    const [age, setAge] = React.useState(0);
+                    const [text, setText] = React.useState('');
+                    const inputRef = React.useRef(null);
+
+                    const onChangeInput = (e) => {
+
+                        if(e.target.name === "age") {
+                            setAge(e.target.value);
+                        }
+                        else if(e.target.name === "name") {
+                            setName(e.target.value);
+                        }
+
+                    }
+
+                    const onSubmitForm = (e) => {
+                        e.preventDefault();
+
+                        setText(name+' '+age);
+                        setAge(0);
+                        setName('');
+
+                        inputRef.current.focus();
+                    }
+
+                    return (
+                        <React.Fragment>
+                            <form onSubmit={onSubmitForm}>
+                                <input type="number" name="age" value={age} onChange={onChangeInput}  ref={inputRef}></input>
+                                <input type="text" name="name" value={name} onChange={onChangeInput}></input>
+                                <button>OK</button>
+                            </form>
+                            {text}
+                        </React.Fragment>
+                    );
+
+                }
+            </script>
+            <script type="text/babel">
+                ReactDOM.render(<Info />, document.querySelector("#root"));
+            </script>
+        </div>
+    </body>
+</html>

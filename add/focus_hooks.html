@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+    <head>
+            <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+            <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+            <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            <script type="text/babel">
+                const Post = () => {
+                    const [title, setTitle] = React.useState('');
+                    const [context, setContext] = React.useState('');
+                    const [data, setData] = React.useState('');
+                    const inputRef = React.useRef(null);
+                    
+                    const onSubmitForm = (e) => {
+                        e.preventDefault();
+                        setTitle('');
+                        setContext('');
+                        setData(data+title+' '+context+'/')
+                    }
+
+                    const onChangeInput = (e) => {
+                        if(e.target.name === "title") {
+                            setTitle(e.target.value);
+                        } else if(e.target.name === "context") {
+                            setContext(e.target.value);
+                        }
+                        inputRef.current.focus();
+                    }
+
+                    return (
+                        <React.Fragment>
+                            <h1>Post</h1>
+                            <form onSubmit={onSubmitForm}>
+                                <input type="text" name="title" value={title} onChange={onChangeInput} ref={inputRef}/>
+                                <input type="text" name="context" value={context} onChange={onChangeInput}/>
+                                <button>post</button>
+                            </form>
+                            {data}
+                        </React.Fragment>
+                    );
+                }
+            </script>
+            <script type="text/babel">
+                ReactDOM.render(<Post />, document.querySelector("#root"));
+            </script>
+        </div>
+    </body>
+</html>

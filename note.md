@@ -51,7 +51,7 @@
         {onClick: () => {this.setState({liked: true})}, type:'submit'}, 
         this.state.liked === true ? 'Liked':'Like'); 
 
-### 1-5 첫 번째 Q&A
+### 1-5. 첫 번째 Q&A
 * 대문자로 시작하는 것은 React component, 소문자로 시작하는 것은 HTML tag 이다
     * `<LikeButton/>`, `<div>` 
 
@@ -60,7 +60,7 @@
 * babel
 * 화살표 함수
 ---
-### 1-4 JSX와 바벨(babel)
+### 1-4. JSX와 바벨(babel)
 * Tag를 사용해서 더 보기 쉽게 할 수 있다
 ```
 return e('button', 
@@ -93,9 +93,9 @@ const e = React.createElement; 지우기
     * JSX 사용 가능
 * Babel이 JSX를 createElement로 바꿔준다
 
-### 1-6 구구단 리액트로 만들기
-### 1-7 구구단 리액트로 만들기
-### 1-8 Fragment와 기타 팁들
+### 1-6. 구구단 리액트로 만들기
+### 1-7. 구구단 리액트로 만들기
+### 1-8. Fragment와 기타 팁들
 ### `Info.html`
 * onChange를 여러 tag에서 쓰는 경우
 ```
@@ -135,7 +135,7 @@ onChange = (e) => {
         });
     ```
 
-### 1-10 ref
+### 1-10. ref
 * DOM에 직접 접근하고 싶을 때 사용
 * [DOM에 직접 접근이 필요한 상황](https://velopert.com/1148)
     1. input / textarea 등에 포커스를 해야 할때 (강의 부분)
@@ -173,3 +173,79 @@ onChange = (e) => {
         * `this.input.focus();`
     * render 함수 위에
         * `input;`
+
+---
+### 2-1. React Hooks 사용하기
+#### component 선언
+
+
+* 함수에서 state와 ref를 쓸 수 있게 한 것
+    * (React는 class보다 hooks를 더 권장한다)
+
+#### component 만들기
+1. 화살표함수로 component를 만들어준다
+```
+const Post = () => {
+
+}
+```
+
+2. 초기값 넣고 `setState` 함수 만들어주기
+```
+const Post = () => {
+    const [title, setTitle] = React.useState('');
+    const [context, setContext] = React.useState('');
+    const [data, setData] = React.useState('');
+}
+```
+
+3. `render` 함수 부분 만들기
+```
+return (
+    <React.Fragment>
+        <h1>Post</h1>
+        <form onSubmit={onSubmitForm}>
+            <input type="text" name="title" value={title} onChange={onChangeInput} ref={inputRef}/>
+            <input type="text" name="context" value={context} onChange={onChangeInput}/>
+        </form>
+        {data}
+    </React.Fragment>
+);
+```
+4. 나머지 함수 작성 (`onSubmitForm`, `onChangeInput`)
+```
+const onSubmitForm = (e) => {
+    e.preventDefault();
+    setTitle('');
+    setContext('');
+    setData(data+title+' '+context+'/')
+}
+
+const onChangeInput = (e) => {
+    if(e.target.name === "title") {
+        setTitle(e.target.value);
+    } else if(e.target.name === "context") {
+        setContext(e.target.value);
+    }
+    inputRef.current.focus();
+}
+```
+
+#### ref 사용하기
+* ref가 필요할 때 === DOM에 접근할 떄
+```
+const inputRef = React.useRef(null); // 추가
+```
+```
+this.input.focus(); // 를
+inputRef.current.focus(); // 로 바꿔서 사용
+```
+tag의 ref에는 `React.useRef(null)`을 넣어준다
+```
+<input ref={inputRef} onChange={this.onChangeInput} value={value}/>
+```
+#### Destructuring
+```
+const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
+```
+이런 식으로 쪼개서 객체에 넣는 것을 말함

@@ -56,7 +56,7 @@
     * `<LikeButton/>`, `<div>` 
 
 
-## ?
+## ??
 * babel
 * 화살표 함수
 ---
@@ -242,10 +242,136 @@ inputRef.current.focus(); // 로 바꿔서 사용
 ```
 tag의 ref에는 `React.useRef(null)`을 넣어준다
 ```
-<input ref={inputRef} onChange={this.onChangeInput} value={value}/>
+<input ref={inputRef} onChange={onChangeInput} value={value}/>
 ```
 #### Destructuring
 ```
 const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
 ```
 이런 식으로 쪼개서 객체에 넣는 것을 말함
+
+### 2-2. Class와 Hooks 비교하기
+* Hooks를 쓰면 코드가 비교적 간결해진다
+* Hooks가 Class보다 조금 더 느릴 수 있다
+    * state가 바뀌었을 때 class의 경우 render 함수만 재실행 되지만
+    * hooks의 경우 함수 전체가 재실행 되기 때문이다
+
+* `className`, `htmlFor`
+
+### 2-3. 웹팩 설치하기
+### 2-4. 모듈 시스템과 웹팩 설정
+### 2-5. 웹팩으로 빌드하기
+#### 웹팩을 쓰는 이유
+* 여러개의 .js 파일을 하나의 .js 파일로 만들어주는 것
+    * 하나의 html파일에 모든 컴포넌트를 넣는 것은 무리이다
+    * 그렇다고 `<script src="..."/>` 하면 중복이 생길 수 있다 (??)
+    * 따라서 .js 파일을 하나의 파일로 만들어, html이 실행할 수 있게 해주며,
+    * 최신 문법을 옛날 브라우저에서도 적용할 수 있게 해준다
+* .js 로 만들어졌다
+* Node를 알아야 한다
+    * Node === .js 실행기 이기 때문이다
+
+* `npm init`
+* `package.json`
+    * 안에 필요한 package 기입해줌
+    * `dependencies`: 실제 서비스에서만 쓰이는 것
+    * `devDependencies`: 개발
+* `npm i react react-dom`
+    * `package.json`에 react, react-dom 추가됨
+* `npm i -D webpack webpack-cli`
+    * `-D`: `webpack`이랑 `webpack-cli`를 다운받을건데, 개발용으로만 쓸거야
+    * (webpack은 실제 서비스에는 필요가 없다)
+* `webpack.config.js`
+    * `module.exports`
+* `client.jsx`
+    * 스크립트(`<script>`)로 react, reactDom을 사용하지 않고 저장해서 불러오도록 한다
+* `.jsx` 파일로 컴포넌트들을 쪼개서 만들 경우
+    * 파일을 쪼개는 경우에는 이것을 꼭 작성해줘야 한다
+    ```
+    // WordRelay.jsx
+
+    const React = require('react');
+    const { Component } = React;
+    // 쪼갠 파일에서 필요로 하는 패키지나 라이브러리
+
+    /*
+    class WordRelay extends Component {
+    state = {
+        text: 'Hello, webpack',
+    }; 
+
+    render() {
+        return <h1>{this.state.text}</h1>
+        }
+    }
+    */
+
+    module.exports = WordRelay;
+    // 쪼갠 파일을 밖에서도 쓸 수 있게 해주는 명령
+    ```
+    * 앞서 `exports` 한 파일을 사용하는 법
+    ```
+    // client.jsx
+    const WordRelay = require('./WordRelay');
+    ```
+
+* 쪼갠 파일들을 하나의 파일로 만드는 법
+    * (`<script src>` 에는 1개의 파일만 넣을 수 있음)
+    * `webpack.config.js` !!
+        ```
+        const path = require('path'); // 경로를 쉽게 조작할 수 있도록 해줌
+
+        module.exports = {
+            name: 'wordrelay-setting', // 00의 설정
+            mode: 'development', // 개발용 이라는 뜻, 실사용에서는 production이라고 함
+            devtool: 'eval', // 빠르게 한다는 뜻
+            resolve: {
+                extension: ['.js', '.jsx']
+            },
+            
+            entry: { // 입력 (입력 파일들을 넣어서)
+                // app: ['./client.jsx', './WordRelay.jsx'],
+                // 하지만 client.jsx에서 WordRelay를 불러오기 때문에,
+                // app: ['./client.jsx'] 라고 쓸 수 있다
+                // + extension을 추가해서 굳이 확장자를 매번 쓰지 않아도 된다
+                app: ['./client],
+            }, 
+
+            module: {
+                rules: [{
+                    test: /\.jsx?/, // '규칙'을 적용할 파일. js, jsx파일에 적용하겠다
+                    loader: 'babel-loader', // 그 '규칙'
+                    options: {
+                        presets: [{'@babel/preset-env', '@babel/preset-react'}],
+                        plugins: ['@babel/plugin-proposal-class-properties'],
+                    },
+                }],
+            },
+            // entry에 있는 파일을 읽고, 그 파일들에 module을 적용한 후
+            // output으로 뺸다
+
+            output: { // 출력 (이 하나의 출력 파일을 만들겠다)
+                path: path.join(__dirname, 'dist'), // 현재 경로 + 'dist' === 현재경로/dist (폴더)
+                filename: 'app.js,
+            },
+        };
+        ```
+    * `entry`, `output` 잘 작성하기
+* babel 설치하기
+    * `npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader @babel/plutin-proposal-class-properties`
+        * `core`
+            * 기본적인 바벨
+            * 최신 문법을 모든 환경에서 잘 작동하도록 바꿔주는 것
+        * `preset-env`
+            * 환경에 맞게 바꿔주는 것
+        * `preset-react`
+        *   .jsx를 .js 바꿔주는 것
+        * `babel-loader`
+            * 바벨과 웹팩을 연결해준다
+* 웹팩 실행
+    * `npx webpack`
+
+---
+## ??
+### 2-3. 웹팩 설치하기
+* 왜 일일히 `<script src="..."/>` 로 하면 중복이생기는거고, 웹팩을 통해서 하나로 만들면 왜 중복이 없어지는거지?

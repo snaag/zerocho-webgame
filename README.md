@@ -358,7 +358,7 @@ const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
         ```
     * `entry`, `output` 잘 작성하기
 * babel 설치하기
-    * `npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader @babel/plutin-proposal-class-properties`
+    * `npm i -D @babel/core @babel/preset-env @babel/present-react babel-loader @babel/plugin-proposal-class-properties`
         * `core`
             * 기본적인 바벨
             * 최신 문법을 모든 환경에서 잘 작동하도록 바꿔주는 것
@@ -371,6 +371,75 @@ const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
 * 웹팩 실행
     * `npx webpack`
 
+### 2-6. 구구단 웹팩으로 빌드하기
+```
+npm init // package.json 생성. npm을 초기화한다.
+npm i react react-dom // node_modules/, package-lock.json 생성
+npm i -D webpack webpack-cli
+npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader // babel 설치
+```
+
+* `webpack.config.js` 생성
+    * webpack의 설정에 대한 모든 정보가 담겨있는 파일
+
+    ```
+    const path = require('path');
+
+    module.exports = {
+        mode: 'development',
+        devtool: 'eval',
+        resolve: {
+            extensions: ['.jsx', '.js'],
+        },
+
+        entry: {
+            app: './client',
+        },
+        module: {
+            rules: [{
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env', '@babel/preset-react'],
+                    plugins: [],
+                },
+            }],
+        },
+        output: {
+            filename: 'app.js',
+            path: path.join(__dirname, 'dist'),
+        },
+    }
+
+    ```
+* `GuguDan.jsx`
+* `client.jsx`
+* `index.html`
+```
+npm run dev
+```
+
+### 2-7. @babel/preset-env와 plugins
+* preset: plugin의 모임
+    * ex. @babel/preset-env, /preset-react
+* plugins
+
+### 2-8.
+### 2-9. webpack-dev-server와 hot-loader
+* `webpack-dev-server`, `hot-loader`
+    * 자동 빌드
+    * `plugins`
+    * `client.jsx`
+        ```
+        const { hot } = require ('react-hot-loader/root');
+        
+        const Hot = hot(WordRelay);
+
+        ReactDom.render(<Hot />, document.querySelector('#root'));
+
+        ```
+
+### 2-10. 끝말잇기 Hooks로 전환하기
 ---
 ## ??
 ### 2-3. 웹팩 설치하기

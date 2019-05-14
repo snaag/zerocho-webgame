@@ -1,19 +1,18 @@
 const React = require('react');
 const { Component } = React;
 
-
-class WordRelay extends Component {
+class GuGuDan extends Component {
     state = {
-        text: 'Hello, webpack',
-    };
+        text: 'Hi',
+    }
 
     render() {
         return (
             <div>
-                <h1>{this.state.text}</h1>
+                {this.state.text}
             </div>
         );
     }
 }
 
-module.exports = WordRelay;
+module.exports = GuGuDan;

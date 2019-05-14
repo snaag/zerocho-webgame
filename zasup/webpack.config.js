@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  name: 'word-relay-dev',
+  name: 'gugudan',
   mode: 'development',
   devtool: 'eval',
   resolve: {

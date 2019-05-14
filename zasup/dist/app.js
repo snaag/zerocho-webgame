@@ -86,14 +86,14 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./WordRelay.jsx":
-/*!***********************!*\
-  !*** ./WordRelay.jsx ***!
-  \***********************/
+/***/ "./GuGuDan.jsx":
+/*!*********************!*\
+  !*** ./GuGuDan.jsx ***!
+  \*********************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst {\n  Component\n} = React;\n\nclass WordRelay extends Component {\n  constructor(...args) {\n    super(...args);\n\n    _defineProperty(this, \"state\", {\n      text: 'Hello, webpack'\n    });\n  }\n\n  render() {\n    return React.createElement(\"div\", null, React.createElement(\"h1\", null, this.state.text));\n  }\n\n}\n\nmodule.exports = WordRelay;\n\n//# sourceURL=webpack:///./WordRelay.jsx?");
+eval("function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst {\n  Component\n} = React;\n\nclass GuGuDan extends Component {\n  constructor(...args) {\n    super(...args);\n\n    _defineProperty(this, \"state\", {\n      text: 'Hi'\n    });\n  }\n\n  render() {\n    return React.createElement(\"div\", null, this.state.text, \";\");\n  }\n\n}\n\nmodule.exports = GuGuDan;\n\n//# sourceURL=webpack:///./GuGuDan.jsx?");
 
 /***/ }),
 
@@ -104,7 +104,7 @@ eval("function _defineProperty(obj, key, value) { if (key in obj) { Object.defin
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst ReactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nconst WordRelay = __webpack_require__(/*! ./WordRelay */ \"./WordRelay.jsx\");\n\nReactDom.render(React.createElement(WordRelay, null), document.querySelector(\"#root\"));\n\n//# sourceURL=webpack:///./client.jsx?");
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst ReactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nconst GuGuDan = __webpack_require__(/*! ./GuGuDan */ \"./GuGuDan.jsx\");\n\nReactDom.render(React.createElement(GuGuDan, null), document.querySelector('#root'));\n\n//# sourceURL=webpack:///./client.jsx?");
 
 /***/ }),
 

@@ -358,7 +358,7 @@ const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
         ```
     * `entry`, `output` 잘 작성하기
 * babel 설치하기
-    * `npm i -D @babel/core @babel/preset-env @babel/present-react babel-loader @babel/plugin-proposal-class-properties`
+    * `npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader @babel/plugin-proposal-class-properties`
         * `core`
             * 기본적인 바벨
             * 최신 문법을 모든 환경에서 잘 작동하도록 바꿔주는 것
@@ -441,6 +441,28 @@ npm run dev
 
 ### 2-10. 끝말잇기 Hooks로 전환하기
 ---
+### 3-1. import와 require비교
+### 3-2. 리액트 반복문 (map)
+#### import
+* require, import 둘이 유사
+    * 최근에는 import를 더 사용
+    * require
+        * node의 모듈 시스템
+    * import(, exports)
+        * react에서 사용
+    ```
+    export const AA = 'hello'
+    import { AA } from './a';
+
+    export default AA;
+    import AA from './a';
+    ```
+
+    * babel이 있어서 require와 import 모두를 쓸 수 있는 것
+
+#### props
+#### map
+
 ## ??
 ### 2-3. 웹팩 설치하기
 * 왜 일일히 `<script src="..."/>` 로 하면 중복이생기는거고, 웹팩을 통해서 하나로 만들면 왜 중복이 없어지는거지?

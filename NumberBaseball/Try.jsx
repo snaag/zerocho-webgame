@@ -3,13 +3,14 @@ import { Component } from 'react';
 
 class Try extends Component {
     render() {
+        const { v } = this.props;
         return (
-            <li>
-                <b>{this.props.value.fruit}</b>
-                <div>contents1</div>
-                <div>contents2</div>
-                <div>contents3</div>
-            </li>
+            <div>
+                <li key={v.fruit+v.taste}>
+                    <b>{v.fruit}</b>
+                    <b>{v.taste}</b>
+                </li>
+            </div>
         );
     }
 }

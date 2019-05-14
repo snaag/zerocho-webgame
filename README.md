@@ -530,7 +530,6 @@ npm run dev
 ### 2-10. 끝말잇기 Hooks로 전환하기
 ---
 ### 3-1. import와 require비교
-### 3-2. 리액트 반복문 (map)
 #### import
 * require, import 둘이 유사
     * 최근에는 import를 더 사용
@@ -548,8 +547,12 @@ npm run dev
 
     * babel이 있어서 require와 import 모두를 쓸 수 있는 것
 
-#### props
+### 3-2. 리액트 반복문 (map)
 #### map
+* React에서 반복문을 쓰는 방법
+
+#### props
+
 
 ## ??
 ### 2-3. 웹팩 설치하기

@@ -427,17 +427,105 @@ npm run dev
 ### 2-8.
 ### 2-9. webpack-dev-server와 hot-loader
 * `webpack-dev-server`, `hot-loader`
-    * 자동 빌드
-    * `plugins`
-    * `client.jsx`
-        ```
-        const { hot } = require ('react-hot-loader/root');
-        
-        const Hot = hot(WordRelay);
+    * 걸어놓은 파일에 변동 사항이 생겼을 때 자동으로 다시 webpack 빌드를 시켜주는 것
+    * 
+    ```
+    //client.jsx
+    const WordRelay = require('./WordRelay');
+    const Hot = hot(WordRelay);
+    ReactDom.render(<Hot />, document.querySelector('#root)); 
+    ```
+    이런 코드가 있을 때, `WordRelay.jsx`에 변동 사항이 생기면 자동으로 `webpack` 빌드를 시켜주는 것
+1. `webpack-dev-server`, `hot-laoder`를 다운받는다
+    * `npm i -D webpack-dev-server hot-loader`
+2. `webpack.config.js`의 `plugins`에 아래 내용을 추가한다
+    * ```react-hot-loader/babel```
+    * 
+    ```
+    // webpack.config.js 전체
+    const path = require('path');
 
-        ReactDom.render(<Hot />, document.querySelector('#root'));
+    module.exports = {
+    name: 'word-relay-dev',
+    mode: 'development',
+    devtool: 'eval',
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    },
+    entry: {
+        app: './client',
+    },
+    module: {
+        rules: [{
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        options: {
+            presets: [
+                '@babel/preset-react',
+            ],
+            plugins: [
+                '@babel/plugin-proposal-class-properties',
+                'react-hot-loader/babel'
+            ],
+        },
+        exclude: path.join(__dirname, 'node_modules'),
+        }],
+    },
+    plugins: [],
+    output: {
+        path: path.join(__dirname, 'dist'),
+        filename: '[name].js',
+        publicPath: '/dist',
+    },
+    };
+    ```
+3. `package.json`의 `script`에 이 key-value를 추가해준다
+    * `"dev": "webpack-dev-server"`
+    *
+    ```
+    // package.json 전체
+    {
+        "name": "lecture",
+        "version": "1.0.0",
+        "description": "",
+        "main": "index.js",
+        "scripts": {
+            "dev": "webpack-dev-server"
+        },
+        "author": "snaag",
+        "license": "MIT",
+        "dependencies": {
+            "react": "^16.8.6",
+            "react-dom": "^16.8.6"
+        },
+        "devDependencies": {
+            "@babel/core": "^7.4.4",
+            "@babel/plugin-proposal-class-properties": "^7.4.4",
+            "@babel/preset-env": "^7.4.4",
+            "@babel/preset-react": "^7.0.0",
+            "babel-loader": "^8.0.6",
+            "react-hot-loader": "^4.8.4",
+            "webpack": "^4.31.0",
+            "webpack-cli": "^3.3.2",
+            "webpack-dev-server": "^3.3.1"
+        }
+    }
 
-        ```
+    ```
+4. 파일을 걸어준다
+    *
+    ```
+    // client.jsx
+    const React = require('react');
+    const ReactDom = require('react-dom');
+    const { hot } = require('react-hot-loader/root');
+
+    const WordRelay = require('./WordRelay');
+
+    const Hot = hot(WordRelay);
+
+    ReactDom.render(<Hot />, document.querySelector("#root"));
+    ```
 
 ### 2-10. 끝말잇기 Hooks로 전환하기
 ---

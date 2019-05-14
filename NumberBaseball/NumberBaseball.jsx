@@ -1,6 +1,6 @@
 const React = require('react');
 const { useState } = React;
-import Try from './Try';
+import Try from "./Try";
 
 // Pick random 4 numbers (Not duplicate)
 function getNumbers() {
@@ -36,7 +36,7 @@ const NumberBaseball = () => {
                         {fruit:'귤', taste:'달아'}
                     ].map((v, i) => {
                         return (
-                            <Try />
+                            <Try value={v}/>
                         );
                     })}
                 </ul>

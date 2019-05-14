@@ -572,11 +572,41 @@ npm run dev
 ```
 ### 3-4. 컴포넌트 분리와 props
 #### props
+* component 간에 state를 주고받을때 사용
 ##### 반복문을 다른 파일로 빼보자
 
 * 
 ```
+// NumberBaseball.jsx
+{[
+    {fruit : '사과', taste : '맛있다'}, 
+    {fruit:'바나나', taste:'달다'}, 
+    {fruit:'귤', taste:'달아'}
+    ].map((v, i) => {
+        return (
+            <Try value={v}/>
+        );
+})}
+```
+```
+// Try.jsx
+const React = require('react');
+import { Component } from 'react';
 
+class Try extends Component {
+    render() {
+        return (
+            <li>
+                <b>{this.props.value.fruit}</b>
+                <div>contents1</div>
+                <div>contents2</div>
+                <div>contents3</div>
+            </li>
+        );
+    }
+}
+
+export default Try;
 ```
 
 ## ??

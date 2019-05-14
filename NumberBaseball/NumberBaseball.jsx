@@ -1,5 +1,6 @@
 const React = require('react');
 const { useState } = React;
+import Try from './Try';
 
 // Pick random 4 numbers (Not duplicate)
 function getNumbers() {
@@ -10,7 +11,7 @@ const NumberBaseball = () => {
     const [answer, setAnswer] = useState('');
     const [result, setResult] = useState('');
     const [value, setValue] = useState('');
-    const [tries, setTries] = [];
+    const [tries, setTries] = useState([]);
 
     const onSubmitForm = (e) => {
 
@@ -29,9 +30,13 @@ const NumberBaseball = () => {
                     시도: {tries.length}
                 </div>
                 <ul>
-                    {['like','likes'].map(() => {
+                    {[
+                        {fruit : '사과', taste : '맛있다'}, 
+                        {fruit:'바나나', taste:'달다'}, 
+                        {fruit:'귤', taste:'달아'}
+                    ].map((v, i) => {
                         return (
-                            <li>like</li>
+                            <Try />
                         );
                     })}
                 </ul>

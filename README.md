@@ -550,9 +550,34 @@ npm run dev
 ### 3-2. 리액트 반복문 (map)
 #### map
 * React에서 반복문을 쓰는 방법
-
+```
+{['사과', '바나나', '귤'].map((v) => {
+        return (
+            <li>{v}</li>
+        );
+    })}
+```
+### 3-3. 리액트 반복문 (key)
+* key, value
+```
+{[
+    {fruit : '사과', taste : '맛있다'}, 
+    {fruit:'바나나', taste:'달다'}, 
+    {fruit:'귤', taste:'달아'}
+    ].map((v, i) => {
+        return (
+            <li key={v.fruit + v.taste}><b>{v.fruit}</b> - {v.taste}</li>
+        );
+})}
+```
+### 3-4. 컴포넌트 분리와 props
 #### props
+##### 반복문을 다른 파일로 빼보자
 
+* 
+```
+
+```
 
 ## ??
 ### 2-3. 웹팩 설치하기

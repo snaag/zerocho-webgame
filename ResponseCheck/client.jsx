@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDom = require('react-dom');
 const { hot } = require('react-hot-loader/root');
 
-const ResponseCheck = require('./ResponseCheck');
+const ResponseCheck = require('./ResponseCheck2');
 
 const Hot = hot(ResponseCheck);
 

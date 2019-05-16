@@ -675,7 +675,9 @@ this.inputRef.current.focus();
     * (예를 들어, A-B-C-D-E-F-G가 있을 때 A->G에게 props를 전달해 주고 싶을 경우)
 
 ---
-* ref의 응용에 대해 집중적으로 배움
+### (part 4 : ref의 응용에 대해 집중적으로 배움)
+### 4-1. React 조건문
+
 ---
 * useEffect에 대해 집중적으로 배움
 ---

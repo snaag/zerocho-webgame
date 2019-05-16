@@ -608,7 +608,77 @@ class Try extends Component {
 
 export default Try;
 ```
+### 3-5.
+### 3-6.
+### 3-7.
+### 3-8.
+### 3-9.
+### 3-10. shouldComponentUpdate
+* setState만 호출하면 render함수의 모든 부분이 재실행된다
+* 따라서, 값이 변경될 때만 렌더링을 하려고 할 때 `shouldComponentUpdate` 안에서 비교
+```
+shouldComponentUpdate(nextProps, nextState, nextContext) {
+    if (this.state.counter !== nextState.counter) {
+        return true;
+    }
+    return false;
+}
+```
 
+### 3-11. PureComponent와 React.memo
+* array 
+    * `array: [...this.state.array, 1]`
+#### PureComponent
+* `const { PureComponent } = React;`
+* `Component` + `shouldComponentUpdate`
+* `state`에 변동이 있는 경우에만 렌더링 함수 실행
+* 그러나 state 변경에 따른 rendering을 커스텀하기 위해 custom을 사용한다
+
+#### React.memo
+* Hooks에서의 purecomponent와 비슷한 역할
+* 
+```
+const RenderTest = memo(({ }) => {
+    return (
+        <div>
+            
+        </div>
+    );
+});
+```
+
+###  3-12. React.createRef
+* class
+* 
+```
+inputRef = createRef();
+this.inputRef.current.focus();
+```
+* hooks에서의 사용법과 유사
+* 예전 방식은 커스텀이 보다 용이하고, 이 방식은 간단하게 구현한다는 차이점이 있다
+
+### 3-13. props와 state 연결하기
+* props는 부모만 바꿀 수 있도록 한다
+    * 만일 자식이 props를 바꿔야 할 필요가 있는 경우,
+    * 자식이 props를 state로 따로 뺀 다음, 거기서 바꿀 수 있도록 한다
+    * 즉 부모로부터 받은 props를, 자식이 state에 저장하면 된다
+    * 
+    ```
+    state = {
+        result: this.props.result,
+        try: this.props.try,
+    }
+    ```
+#### Context
+* 거리가 먼 자식에게 props를 전달해주고 싶을 때 사용
+    * Redux가 context의 응용이다
+    * (예를 들어, A-B-C-D-E-F-G가 있을 때 A->G에게 props를 전달해 주고 싶을 경우)
+
+---
+* ref의 응용에 대해 집중적으로 배움
+---
+* useEffect에 대해 집중적으로 배움
+---
 ## ??
 ### 2-3. 웹팩 설치하기
 * 왜 일일히 `<script src="..."/>` 로 하면 중복이생기는거고, 웹팩을 통해서 하나로 만들면 왜 중복이 없어지는거지?

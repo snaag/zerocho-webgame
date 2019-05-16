@@ -1,16 +1,17 @@
 const React = require('react');
-import { Component } from 'react';
+const { Component } = React;
 
-class Try extends Component {
+class Try extends React.Component {
     render() {
-        const { v } = this.props;
+        // const { v } = this.props;
+        const { value, index } = this.props;
+
         return (
-            <div>
-                <li key={v.fruit+v.taste}>
-                    <b>{v.fruit}</b>
-                    <b>{v.taste}</b>
-                </li>
-            </div>
+            <React.Fragment>
+                <li key={value.fruit + value.taste}>{value.fruit}-{value.taste}</li>
+                <p>c1</p>
+                <p>c1</p>
+            </React.Fragment>
         );
     }
 }

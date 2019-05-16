@@ -19,7 +19,8 @@ module.exports = {
             '@babel/preset-react',
         ],
         plugins: [
-            'react-hot-loader/babel'
+            'react-hot-loader/babel',
+            '@babel/plugin-proposal-class-properties'
         ],
       },
       exclude: path.join(__dirname, 'node_modules'),

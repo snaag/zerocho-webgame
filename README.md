@@ -437,7 +437,7 @@ npm run dev
     ```
     이런 코드가 있을 때, `WordRelay.jsx`에 변동 사항이 생기면 자동으로 `webpack` 빌드를 시켜주는 것
 1. `webpack-dev-server`, `hot-laoder`를 다운받는다
-    * `npm i -D webpack-dev-server hot-loader`
+    * `npm i -D webpack-dev-server react-hot-loader`
 2. `webpack.config.js`의 `plugins`에 아래 내용을 추가한다
     * ```react-hot-loader/babel```
     * 
@@ -677,10 +677,35 @@ this.inputRef.current.focus();
 ---
 ### (part 4 : ref의 응용에 대해 집중적으로 배움)
 ### 4-1. React 조건문
-
+* `.jsx` 안에서 `for`, `if`를 못쓴다
+#### IF
+* { 임의의 식 === 값 ? 방법 1 : 방법 2}
+    * 임의의 어떤 식이 값과 같을 경우(조건이 참일 경우), 방법 1을 수행한다
+    * 임의의 어떤 식이 값과 같지 않을 경우(조건이 거짓일 경우), 방법 2를 수행한다
+* 예시
+    * 
+    ```
+    {
+        this.state.result.length === 0 ? null :
+        <div>
+            평균 시간: {
+                this.state.result.reduce((a, c) => a + c) / this.state.result.length
+            }ms
+        </div>
+    }
+    ```
+### 4-2. setTimeout 넣어 반응속도체크
 ---
 * useEffect에 대해 집중적으로 배움
 ---
 ## ??
 ### 2-3. 웹팩 설치하기
 * 왜 일일히 `<script src="..."/>` 로 하면 중복이생기는거고, 웹팩을 통해서 하나로 만들면 왜 중복이 없어지는거지?
+---
+```
+npm init
+npm i react react-dom
+npm i -D webpack webpack-cli
+npm i -D @babel/core @babel/preset-env @babel/react babel-loader
+npm i -D react-hot-loader webpack-dev-server
+```

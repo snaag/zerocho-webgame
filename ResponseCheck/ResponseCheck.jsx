@@ -48,9 +48,6 @@ class ResponseCheck extends React.Component {
         }
 
     };
-    componentDidUpdate() {
-
-    }
 
     renderAverage = () => {
         const { result } = this.state;
@@ -59,7 +56,15 @@ class ResponseCheck extends React.Component {
         : <div>평균 시간: {
                 result.reduce((a, c) => a + c) / result.length
             }ms
+            <br></br>
+            <button onClick={this.onReset}>Reset</button>
         </div>
+    }
+
+    onReset = () => {
+        this.setState({
+            result: [],            
+        });
     }
 
     render() {

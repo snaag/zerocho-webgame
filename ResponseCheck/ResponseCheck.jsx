@@ -4,7 +4,7 @@ class ResponseCheck extends React.Component {
     state = {
         state: 'waiting',
         message: '클릭해서 시작하세요',
-        result: [3,5],
+        result: [],
     };
     
     timeout;
@@ -19,16 +19,19 @@ class ResponseCheck extends React.Component {
                 message: '초록색이 되면 클릭하세요',
             });
             this.timeout = setTimeout(() => {
+                this.startTime = new Date();
+                console.log("start: ",this.startTime);
+
                 this.setState({
                     state: 'now',
                     message: '지금 클릭',
                 });
-                this.startTime = new Date();
             }, Math.floor(Math.random()*1000) + 2000);
         } else if (state === 'ready') { // 성급하게 클릭
             clearTimeout(this.timeout);
 
             this.setState({
+                state:'waiting',
                 message: '이런 성급하셨군요! 초록색이 된 이후에 클릭하세요',
             })
         } else if (state === 'now') { // 반응속도 체크
@@ -40,16 +43,20 @@ class ResponseCheck extends React.Component {
                     result: [...prevState.result, this.endTime - this.startTime],
                 }
             });
+            console.log("end: ",this.endTime);
+            console.log(this.state.result);
         }
 
     };
+    componentDidUpdate() {
+
+    }
 
     renderAverage = () => {
         const { result } = this.state;
-        result.length === 0 
-        ? null 
-        : <div>
-            평균 시간: {
+        return result.length === 0 
+        ? <div>~_~</div> 
+        : <div>평균 시간: {
                 result.reduce((a, c) => a + c) / result.length
             }ms
         </div>
@@ -73,4 +80,5 @@ class ResponseCheck extends React.Component {
     }
 }
 
+// export default ResponseCheck;
 module.exports = ResponseCheck;

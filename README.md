@@ -697,6 +697,33 @@ this.inputRef.current.focus();
 ### 4-2. setTimeout 넣어 반응속도체크
 ---
 * useEffect에 대해 집중적으로 배움
+
+### 4-4. ?
+* ref vs. setState
+    * ref: 값이 바뀌어도 render 함수가 재실행되지 않는다
+        * (값의 변화가 많으나 화면에는 영향을 주지 않는 것)
+        * current로 접근해야 한다
+        *
+        ```
+        const timeOut = React.useRef(null);
+
+        timeOut.current = setTimeout(() => {
+                startTime.current = new Date();
+                setState('now');
+                setMessage('지금 클릭');
+            }, Math.floor(Math.random()*1000) + 2000);
+        ```
+    * setState: 값이 바뀌면 render 함수가 재실행된다
+
+### 4-5. return 내부에 for과 if 쓰기
+
+* 바로실행함수를 만들어서 그 안에 for, if를 사용할 수 있다
+    *
+    ```
+    {(() => {
+
+    })()}
+    ```
 ---
 ## ??
 ### 2-3. 웹팩 설치하기

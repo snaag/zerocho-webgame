@@ -6,9 +6,15 @@ import React, { Component } from 'react';
 // 부모가 나를 없앴을 때 -> componentWillUnmount -> 소멸
 
 const rspCoords = {
-    rock: '0',
-    scissor: '-142px',
-    paper: '-284px',
+    rock: 0,
+    scissor: '398px',
+    paper: '199px',
+}
+
+const scores = {
+    rock: 1,
+    scissor: 0,
+    paper: -1,
 }
 
 class RSP extends Component {
@@ -23,10 +29,26 @@ class RSP extends Component {
         // cmpt 첫 렌더링 된 후
         // 비동기 요청 많이 함
         componentDidMount() { 
-            const {imgCoord} = this.state;
             this.interval = setInterval(() => {
-                if (imgCoord === '0') {
+                const {imgCoord} = this.state;
 
+                console.log(imgCoord);
+
+                if (imgCoord === rspCoords.rock) {
+                    console.log("imgCoord is SCISSOR");
+                    this.setState({
+                        imgCoord: rspCoords.scissor,
+                    });
+                } else if (imgCoord === rspCoords.paper) {
+                    console.log("imgCoord is ROCK");
+                    this.setState({
+                        imgCoord: rspCoords.rock,
+                    });
+                } else if (imgCoord === rspCoords.scissor) {
+                    console.log("imgCoord is PAPER");
+                    this.setState({
+                        imgCoord: rspCoords.paper,
+                    });
                 }
             }, 1000);
         }
@@ -44,10 +66,16 @@ class RSP extends Component {
             clearInterval(this.interval);
         }
 
+        onClickBtn = (c) => {
+
+        }
+
         /* 비동기 요청이란 */
         // setInterval은 수동으로 정리해주지 않으면, 컴포넌트가 없어지더라도 웹사이트를 끌 때 까지 setInterval은 없어지지 않는다
             // 일정 시간마다 반복적으로 작업해주는 것
             // 변수에 setInterval을 넣어준 다음에, clearInterval로 없애준다
+
+
 
     render() {
         const { result, score, imgCoord } = this.state;
@@ -56,9 +84,9 @@ class RSP extends Component {
             <>
                 <div id="computer" style={{ background: `url(https://steemitimages.com/640x0/https://steemitimages.com/DQmVDkcxCxbuJJtwRiGv2xLoKt1eDMoznW1wYZyqJ9gQgCv/가위6%5B1%5D.png) ${imgCoord} 0`}} />
                 <div>
-                    <button id="rock" className="btn" onClick={() => onClickBtn('바위')}>바위</button>
-                    <button id="scissor" className="btn" onClick={() => onClickBtn('가위')}>가위</button>
-                    <button id="paper" className="btn" onClick={() => onClickBtn('보')}>보</button>
+                    <button id="rock" className="btn" onClick={() => this.onClickBtn('바위')}>바위</button>
+                    <button id="scissor" className="btn" onClick={() => this.onClickBtn('가위')}>가위</button>
+                    <button id="paper" className="btn" onClick={() => this.onClickBtn('보')}>보</button>
                 </div>
                 <div>{result}</div>
                 <div>현재 {score} 점</div>

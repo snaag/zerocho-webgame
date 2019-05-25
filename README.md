@@ -729,7 +729,46 @@ this.inputRef.current.focus();
 * 부모가 나를 없앴을 때 -> `componentWillUnmount` -> 소멸
 
 ### 5-2. setInterval과 라이프사이클 연동하기
+* setInterval 쌍이 필요한 이유
+    * setInterval 쌍이란?
+        - `setInterval()`, `clearInterval()` 쌍을 말함
+    * 필요한 이유는?
+        - `componentDidMount()`과 같은 라이프사이클 함수 안에서 선언된 경우
+        - 해당 함수가 끝난다고 해도, `setInterval()`은 사라지지 않기 때문에 메모리누수가 발생한다
+        - 이를 줄이기 위해 `setInterval()`을 `clearInterval()`로 없애주어야 한다
+        - (그리고 `clearInterval()`은 `componentWillUnmount()`에서 선언된다)
+    * 예시
+        -
+        ```
+        componentDidMount() { 
+            this.interval = setInterval(() => {
+                const {imgCoord} = this.state;
 
+                console.log(imgCoord);
+
+                if (imgCoord === rspCoords.rock) {
+                    console.log("imgCoord is SCISSOR");
+                    this.setState({
+                        imgCoord: rspCoords.scissor,
+                    });
+                } else if (imgCoord === rspCoords.paper) {
+                    console.log("imgCoord is ROCK");
+                    this.setState({
+                        imgCoord: rspCoords.rock,
+                    });
+                } else if (imgCoord === rspCoords.scissor) {
+                    console.log("imgCoord is PAPER");
+                    this.setState({
+                        imgCoord: rspCoords.paper,
+                    });
+                }
+            }, 1000);
+        }
+
+        componentWillUnmount() {
+            clearInterval(this.interval);
+        }
+        ```
 
 
 

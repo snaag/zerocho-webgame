@@ -695,10 +695,8 @@ this.inputRef.current.focus();
     }
     ```
 ### 4-2. setTimeout 넣어 반응속도체크
----
-* useEffect에 대해 집중적으로 배움
-
-### 4-4. ?
+### 4-3. 성능 체크와 Q&A
+### 4-4. 반응속도체크 Hooks로 전환하기
 * ref vs. setState
     * ref: 값이 바뀌어도 render 함수가 재실행되지 않는다
         * (값의 변화가 많으나 화면에는 영향을 주지 않는 것)
@@ -716,18 +714,45 @@ this.inputRef.current.focus();
     * setState: 값이 바뀌면 render 함수가 재실행된다
 
 ### 4-5. return 내부에 for과 if 쓰기
-
-* 바로실행함수를 만들어서 그 안에 for, if를 사용할 수 있다
+* .jsx 안에서는 for, if를 사용할 수 없다
+* 따라서 바로실행함수를 만들어서 그 안에 for, if를 사용할 수 있다
     *
     ```
     {(() => {
-
+        // 내용
     })()}
     ```
 ---
-## ??
-### 2-3. 웹팩 설치하기
-* 왜 일일히 `<script src="..."/>` 로 하면 중복이생기는거고, 웹팩을 통해서 하나로 만들면 왜 중복이 없어지는거지?
+### 5-1. 리액트 라이프사이클 소개
+* constructor -> render -> ref -> `componentDidMount`
+* (setState/props 바뀔 때) -> `shouldComponentUpdate`(true 인 경우) -> rerender -> `componentDidUpdate`
+* 부모가 나를 없앴을 때 -> `componentWillUnmount` -> 소멸
+
+### 5-2. setInterval과 라이프사이클 연동하기
+
+
+
+
+
+### 5-3. 가위바위보 게임 만들기
+
+### 5-4. 고차 함수와 Q&A
+
+### 5-5. Hooks와 useEffect
+
+### 5-6. 클래스와 Hooks 라이프사이클 비교
+---
+### 6-1. 로또 추첨기 컴포넌트
+
+### 6-2. setTimeout 여러 번 사용하기
+
+### 6-3. `componentDidUpdate`
+
+### 6-4. useEffect로 업데이트 감지하기
+
+### 6-5. useMemo와 useCallback
+
+### 6-6. Hooks에 대한 자잘한 팁들
 ---
 ```
 npm init

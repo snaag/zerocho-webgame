@@ -771,9 +771,45 @@ this.inputRef.current.focus();
         ```
 
 
-
-
 ### 5-3. 가위바위보 게임 만들기
+#### 버튼을 클릭한 후에도, 게임이 계속 시작되도록 만들려고 하는 경우
+* 똑같은 일을 반복하는 경우에는, 함수로 빼준다
+    * 
+    ```
+    changeHand = () => {
+            const {imgCoord} = this.state;
+
+            if (imgCoord === rspCoords.rock) {
+                this.setState({
+                    imgCoord: rspCoords.scissor,
+                });
+            } else if (imgCoord === rspCoords.paper) {
+                this.setState({
+                    imgCoord: rspCoords.rock,
+                });
+            } else if (imgCoord === rspCoords.scissor) {
+                this.setState({
+                    imgCoord: rspCoords.paper,
+                });
+            }
+        };
+
+    // this를 사용하기 때문에, 화살표 함수를 사용하였음
+    ```
+* `componentDidMount`와 `componentDidUpdate`
+    * `componentDidMount`
+        - 최초 렌더링 이후 단 한번만 실행
+        - 그래서 초기화로 많이 쓰임
+    * `componentDidUpdate`
+        - 그 이후 렌더링 된 이후 매번 실행됨
+
+* 방법 1.
+    * 게임을 실행하는 함수를, 초기화를 위해 `componentDidMount`에 넣어주고,
+    * 이후에도 반복하도록 하기 위해 `componentDidUpdate`에도 넣어준다
+* 방법 2.
+    * 버튼 클릭에 관한 함수의 맨 아래에 함수를 호출해준다
+    * `this.interval = setInterval(this.changeHand, 500)` 이렇게
+
 
 ### 5-4. 고차 함수와 Q&A
 

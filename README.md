@@ -728,10 +728,11 @@ this.inputRef.current.focus();
 * (setState/props 바뀔 때) -> `shouldComponentUpdate`(true 인 경우) -> rerender -> `componentDidUpdate`
 * 부모가 나를 없앴을 때 -> `componentWillUnmount` -> 소멸
 
-### 5-2. setInterval과 라이프사이클 연동하기
-* setInterval 쌍이 필요한 이유
-    * setInterval 쌍이란?
+### 5-2. `setInterval`과 라이프사이클 연동하기
+* `setInterval` 쌍이 필요한 이유
+    * `setInterval` 쌍이란?
         - `setInterval()`, `clearInterval()` 쌍을 말함
+        - (actual term은 아니고 그냥 쉽게기억할려고 내가 이름붙인거)
     * 필요한 이유는?
         - `componentDidMount()`과 같은 라이프사이클 함수 안에서 선언된 경우
         - 해당 함수가 끝난다고 해도, `setInterval()`은 사라지지 않기 때문에 메모리누수가 발생한다
@@ -812,6 +813,82 @@ this.inputRef.current.focus();
 
 
 ### 5-4. 고차 함수와 Q&A
+* 고차함수
+    * 이렇게 바꿔보자
+    *
+    ```
+    onClick={() => this.onClickBtn('rock')
+
+    onClickBtn = (choice) => {
+            clearInterval(this.interval);
+
+            const { imgCoord } = this.state;
+            const myScore = scores[choice];
+            const cpuScore = scores[computerChoice(imgCoord)];
+            const diff = myScore - cpuScore;
+
+            if (diff === 0) {
+                this.setState({
+                    result: 'DRAW!',
+                });
+            } else if([-1, 2].includes(diff)) {
+                this.setState((prevState) => {
+                    return {
+                        result: 'You WIN!',
+                        score: prevState.score + 1,
+                    };
+                });
+            } else {
+                this.setState((prevState) => {
+                    return {
+                        result: 'You LOSE..',
+                        score: prevState.score - 1,
+                    };
+                });
+            }
+            setTimeout(() => {
+                this.interval = setInterval(this.changeHand, cycle)
+            }, cycleWait);
+        };
+    ```
+
+    를 이렇게
+    
+    ```
+    <button id="rock" className="btn" onClick={this.onClickBtn('rock')}>바위</button>
+
+    onClickBtn = (choice) => () => {
+            clearInterval(this.interval);
+
+            const { imgCoord } = this.state;
+            const myScore = scores[choice];
+            const cpuScore = scores[computerChoice(imgCoord)];
+            const diff = myScore - cpuScore;
+
+            if (diff === 0) {
+                this.setState({
+                    result: 'DRAW!',
+                });
+            } else if([-1, 2].includes(diff)) {
+                this.setState((prevState) => {
+                    return {
+                        result: 'You WIN!',
+                        score: prevState.score + 1,
+                    };
+                });
+            } else {
+                this.setState((prevState) => {
+                    return {
+                        result: 'You LOSE..',
+                        score: prevState.score - 1,
+                    };
+                });
+            }
+            setTimeout(() => {
+                this.interval = setInterval(this.changeHand, cycle)
+            }, cycleWait);
+        };
+    ```
 
 ### 5-5. Hooks와 useEffect
 

@@ -121,10 +121,6 @@ class RSP extends Component {
                     <button id="rock" className="btn" onClick={this.onClickBtn('rock')}>바위</button>
                     <button id="scissor" className="btn" onClick={this.onClickBtn('scissor')}>가위</button>
                     <button id="paper" className="btn" onClick={this.onClickBtn('paper')}>보</button>
-                    {/* 
-                        onClick={this.onClickBtn('rock')}
-                        onClick={() => this.onClickBtn('rock')}
-                    */}
                 </div>
                 <div>{result}</div>
                 <div>현재 {score} 점</div>

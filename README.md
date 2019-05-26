@@ -1068,6 +1068,41 @@ this.inputRef.current.focus();
 ---
 ### 6-1. 로또 추첨기 컴포넌트
 ### 6-2. setTimeout 여러 번 사용하기
+* setTimer를 배열로 선언하고 초기화해보기
+```
+// 최초 실행시 실행되는 함수
+componentDidMount() {
+    const { winBalls } = this.state;
+
+    // 비동기에 변수를 선언하면 closure 문제가 생기는데, es6부터는 문제가 없어졌다
+    for (let i = 0; i<this.state.winNumbers.length - 1; i++) {
+        // setTimeout은 무조건 사용 후 clear를 해주어야 한다 (push 말고)
+        this.timeouts[i] = setTimeout(() => {
+            this.setState((prevState) => {
+                return {
+                    winBalls: [...prevState.winBalls, this.state.winNumbers[i]], // push하지 말고, 예전 state를 사용하는 방식인, 이런식으로 쓰자
+                };
+            });
+        }, (i+1) * 1000);
+    }
+    this.timeouts[6] = setTimeout(() => {
+        this.setState({
+            bonus: this.state.winNumbers[6],
+            redo: true,
+        });
+    }, 7000);
+}
+
+componentWillUnmount() {
+    this.timeouts.forEach((v) => {
+        clearTimeout(v);
+    }); 
+
+    // for (let i=0; i<this.state.winNumbers.length; i++) {
+    //     clearTimeout(this.timeouts[i])
+    // }
+}  
+```
 
 ### 6-3. `componentDidUpdate`
 

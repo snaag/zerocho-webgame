@@ -12,7 +12,7 @@ const Ball = memo(({ number }) => {
     else if (number <= 30)
         background='yello';
     else if (number <= 40)
-        background='white';
+        background='blue';
     else 
         background='green';
     

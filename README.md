@@ -734,10 +734,11 @@ this.inputRef.current.focus();
         - `setInterval()`, `clearInterval()` 쌍을 말함
         - (actual term은 아니고 그냥 쉽게기억할려고 내가 이름붙인거)
     * 필요한 이유는?
-        - `componentDidMount()`과 같은 라이프사이클 함수 안에서 선언된 경우
+        - `componentDidMount()`과 같은 함수 안에서 선언된 경우
         - 해당 함수가 끝난다고 해도, `setInterval()`은 사라지지 않기 때문에 메모리누수가 발생한다
         - 이를 줄이기 위해 `setInterval()`을 `clearInterval()`로 없애주어야 한다
         - (그리고 `clearInterval()`은 `componentWillUnmount()`에서 선언된다)
+    * `setInterval`의 선언은 꼭 `componentDidMount()`함수가 아니어도 되고 (일반 함수여도 된다), `clearInterval()`은 동일하게 `componentWillUnmount()` 에서 이루어져야 한다
     * 예시
         -
         ```
@@ -1066,7 +1067,6 @@ this.inputRef.current.focus();
 
 ---
 ### 6-1. 로또 추첨기 컴포넌트
-
 ### 6-2. setTimeout 여러 번 사용하기
 
 ### 6-3. `componentDidUpdate`
@@ -1077,10 +1077,79 @@ this.inputRef.current.focus();
 
 ### 6-6. Hooks에 대한 자잘한 팁들
 ---
+* `package`
 ```
 npm init
 npm i react react-dom
 npm i -D webpack webpack-cli
-npm i -D @babel/core @babel/preset-env @babel/react babel-loader
+npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader
 npm i -D react-hot-loader webpack-dev-server
 ```
+
+* `client.jsx`
+```
+import React from 'react';
+import ReactDom from 'react-dom';
+import { hot } from 'react-hot-loader/root';
+
+import [JSX_FILE_NEWNAME] from './[JSX_FILE]';
+
+const Hot = hot([JSX_FILE_NEWNAME]);
+
+ReactDom.render(<Hot />, document.querySelector('#root'));
+```
+
+* `index.html`
+```
+<!DOCTYPE html>
+<head>
+    <meta charset='utf-8'>
+    <title>Lotto number Gatcha machine</title>
+    <style></style>
+</head>
+<body>
+    <div id='root'></div>
+    <script src='./dist/app.js'></script>
+</body>
+</html>
+```
+
+* `webpack.config.js`
+```
+const path = require('path');
+
+module.exports = {
+  name: '[NAME]',
+  mode: 'development',
+  devtool: 'eval',
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  entry: {
+    app: './client',
+  },
+  module: {
+    rules: [{
+      test: /\.jsx?$/,
+      loader: 'babel-loader',
+      options: {
+        presets: [
+            '@babel/preset-react',
+        ],
+        plugins: [
+            '@babel/plugin-proposal-class-properties',
+            'react-hot-loader/babel'
+        ],
+      },
+      exclude: path.join(__dirname, 'node_modules'),
+    }],
+  },
+  plugins: [],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].js',
+    publicPath: '/dist',
+  },
+};
+```
+

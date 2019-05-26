@@ -3,7 +3,6 @@ import Ball from './Ball';
 
 
 function getWinNumbers() {
-    console.log('getWinNumbers');
     const candidate = Array(45).fill().map((v, i) => i + 1);
     const shuffle = [];
 
@@ -17,6 +16,8 @@ function getWinNumbers() {
     return [...winNumbers, bonusNumber];
 }
 
+const cycle = 100;
+
 class Lotto extends Component {
     state = {
         winNumbers: getWinNumbers(), // 당첨 숫자들
@@ -29,25 +30,8 @@ class Lotto extends Component {
 
     // 최초 실행시 실행되는 함수
     componentDidMount() {
-        const { winBalls } = this.state;
-
-        // 비동기에 변수를 선언하면 closure 문제가 생기는데, es6부터는 문제가 없어졌다
-        for (let i = 0; i<this.state.winNumbers.length - 1; i++) {
-            // setTimeout은 무조건 사용 후 clear를 해주어야 한다 (push 말고)
-            this.timeouts[i] = setTimeout(() => {
-                this.setState((prevState) => {
-                    return {
-                        winBalls: [...prevState.winBalls, this.state.winNumbers[i]], // push하지 말고, 예전 state를 사용하는 방식인, 이런식으로 쓰자
-                    };
-                });
-            }, (i+1) * 1000);
-        }
-        this.timeouts[6] = setTimeout(() => {
-            this.setState({
-                bonus: this.state.winNumbers[6],
-                redo: true,
-            });
-        }, 7000);
+        this.runTimeouts();
+        console.log('componentDidMount');
     }
 
     componentWillUnmount() {
@@ -55,15 +39,54 @@ class Lotto extends Component {
             clearTimeout(v);
         }); 
 
-        // for (let i=0; i<this.state.winNumbers.length; i++) {
-        //     clearTimeout(this.timeouts[i])
-        // }
+        this.runTimeouts();
+        console.log('componentWillUnmount');
     }
 
-    onClickRedo() {
+    componentDidUpdate(prevPros, prevState) {
+        const { winBalls } = this.state;
+ 
+        if (winBalls.length === 0) 
+            this.runTimeouts();
+
+        console.log('componentDidUpdate');
+    }
+
+    runTimeouts = () => {
+        console.log('runTimeouts');
+
+        const { winBalls, winNumbers } = this.state;
+
+        // 비동기에 변수를 선언하면 closure 문제가 생기는데, es6부터는 문제가 없어졌다
+        for (let i = 0; i<winNumbers.length - 1; i++) {
+            // setTimeout은 무조건 사용 후 clear를 해주어야 한다 (push 말고)
+            this.timeouts[i] = setTimeout(() => {
+                this.setState((prevState) => {
+                    return {
+                        winBalls: [...prevState.winBalls, winNumbers[i]], // push하지 말고, 예전 state를 사용하는 방식인, 이런식으로 쓰자
+                    };
+                });
+            }, (i+1) * cycle);
+        }
+        this.timeouts[6] = setTimeout(() => {
+            this.setState({
+                bonus: winNumbers[6],
+                redo: true,
+            });
+        }, cycle*winNumbers.length);
+    }
+
+    
+
+    onClickRedo = () => {
+        // 초기화
         this.setState({
-            redo: true,
+            winNumbers: getWinNumbers(), // 당첨 숫자들
+            winBalls: [],
+            bonus: null, // 보너스 공
+            redo: false,
         });
+        this.timeouts=[];
     }
 
     // state에 변경이 일어나면 호출되는 render 함수

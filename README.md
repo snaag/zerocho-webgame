@@ -1104,7 +1104,47 @@ componentWillUnmount() {
 }  
 ```
 
+* `PureComponent`(class), `memo`(functional component)
+    * 
+    ```
+    // 이렇게 함수를 함수로 한번 더 감싸는 것을 고차함수라 한다
+    // memo는 class component에서의 pure component와 같다
+    const Ball = memo(({ number }) => {
+    let background;
+
+    if (number <= 10)
+        background='red';
+    else if (number <= 20)
+        background='orange';
+    else if (number <= 30)
+        background='yello';
+    else if (number <= 40)
+        background='blue';
+    else 
+        background='green';
+    
+
+        return (
+            <div className="ball" style={{ background }}>{number}</div>
+        );
+    });
+
+    export default Ball;
+    ```
+
 ### 6-3. `componentDidUpdate`
+* `prevState`와 `thisState`를 비교하여, 참이면(바뀌었으면) render함수를 실행하고, 거짓이면(바뀌지않았다면) 아무것도 하지 않는다
+    * 
+    ```
+    componentDidUpdate(prevPros, prevState) {
+            const { winBalls } = this.state;
+    
+            if (winBalls.length === 0) 
+                this.runTimeouts();
+
+            console.log('componentDidUpdate');
+        }
+    ```
 
 ### 6-4. useEffect로 업데이트 감지하기
 

@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97e38083-b1eb-416d-9b40-8efbaa2d348a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ZeroCho.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lotto/Lotto.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lotto/client.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Lotto/client.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotto/Ball.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotto/Lotto.class.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotto/Lotto.hooks.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotto/client.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotto/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotto/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lotto/webpack.config.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,32 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lotto/Lotto.class.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lotto/Lotto.hooks.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="277">
+              <first_editor relative-caret-position="21">
                 <caret line="1197" selection-start-line="1197" selection-end-line="1197" />
               </first_editor>
               <second_editor />
@@ -90,11 +69,6 @@
               <item name="ZeroCho" type="b2602c69:ProjectViewProjectNode" />
               <item name="ZeroCho" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ZeroCho" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ZeroCho" type="462c0819:PsiDirectoryNode" />
-              <item name="Lotto" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -129,19 +103,19 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560064821756</updated>
-      <workItem from="1560064823840" duration="2740000" />
+      <workItem from="1560064823840" duration="2785000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2740000" />
+    <option name="totallyTimeSpent" value="2785000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.21000704" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.21000704" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
@@ -154,7 +128,7 @@
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2874693" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2874693" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -184,7 +158,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="277">
+          <first_editor relative-caret-position="21">
             <caret line="1197" selection-start-line="1197" selection-end-line="1197" />
           </first_editor>
           <second_editor />

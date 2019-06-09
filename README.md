@@ -22,11 +22,12 @@
         constructor(props) {
             super(props);
         }
-
+    
         render() {
             return e('button', null, 'Like');
         }
     }
+    ```
 * Component 그리기
     ```
     React.DOM.render(e(LikeButton), document.querySelector('#root));
@@ -50,6 +51,7 @@
     return e('button', 
         {onClick: () => {this.setState({liked: true})}, type:'submit'}, 
         this.state.liked === true ? 'Liked':'Like'); 
+    ```
 
 ### 1-5. 첫 번째 Q&A
 * 대문자로 시작하는 것은 React component, 소문자로 시작하는 것은 HTML tag 이다
@@ -155,17 +157,18 @@ onChange = (e) => {
     * 1
     ```
     this.setState({
-
+    
      });
-     ``` 
-     
+    ```
+
      * 2
     ```
     this.setState((prevState) => {
         return {
-
+    
         };
     });
+    ```
 * ref
     * focus를 주고 싶은 tag에게
         * `this.input = f;`
@@ -269,6 +272,7 @@ const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
     * 최신 문법을 옛날 브라우저에서도 적용할 수 있게 해준다
 * .js 로 만들어졌다
 * Node를 알아야 한다
+
     * Node === .js 실행기 이기 때문이다
 
 * `npm init`
@@ -277,13 +281,16 @@ const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
     * `dependencies`: 실제 서비스에서만 쓰이는 것
     * `devDependencies`: 개발
 * `npm i react react-dom`
+
     * `package.json`에 react, react-dom 추가됨
 * `npm i -D webpack webpack-cli`
     * `-D`: `webpack`이랑 `webpack-cli`를 다운받을건데, 개발용으로만 쓸거야
     * (webpack은 실제 서비스에는 필요가 없다)
 * `webpack.config.js`
+
     * `module.exports`
 * `client.jsx`
+
     * 스크립트(`<script>`)로 react, reactDom을 사용하지 않고 저장해서 불러오도록 한다
 * `.jsx` 파일로 컴포넌트들을 쪼개서 만들 경우
     * 파일을 쪼개는 경우에는 이것을 꼭 작성해줘야 한다
@@ -369,6 +376,7 @@ const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
         * `babel-loader`
             * 바벨과 웹팩을 연결해준다
 * 웹팩 실행
+
     * `npx webpack`
 
 ### 2-6. 구구단 웹팩으로 빌드하기
@@ -437,6 +445,7 @@ npm run dev
     ```
     이런 코드가 있을 때, `WordRelay.jsx`에 변동 사항이 생기면 자동으로 `webpack` 빌드를 시켜주는 것
 1. `webpack-dev-server`, `hot-laoder`를 다운받는다
+
     * `npm i -D webpack-dev-server react-hot-loader`
 2. `webpack.config.js`의 `plugins`에 아래 내용을 추가한다
     * ```react-hot-loader/babel```
@@ -915,6 +924,7 @@ this.inputRef.current.focus();
     },  [imgCoord]);
     ```
 * `class` to `Hooks` (위쪽이 `class`, 아래쪽이 `hooks`)
+
     * `state` 초기화
     ```
     const [result, setResult] = useState('');
@@ -930,7 +940,7 @@ this.inputRef.current.focus();
             score: 0,
         };
     ```
-    
+
     * changeHand 함수
     ```
     const changeHand = () => {
@@ -948,7 +958,7 @@ this.inputRef.current.focus();
     ```
     changeHand = () => {
             const {imgCoord} = this.state;
-
+    
             if (imgCoord === rspCoords.rock) {
                 this.setState({
                     imgCoord: rspCoords.scissor,
@@ -969,12 +979,12 @@ this.inputRef.current.focus();
     ```
     onClickBtn = (choice) => () => {
             clearInterval(this.interval);
-
+    
             const { imgCoord } = this.state;
             const myScore = scores[choice];
             const cpuScore = scores[computerChoice(imgCoord)];
             const diff = myScore - cpuScore;
-
+    
             if (diff === 0) {
                 this.setState({
                     result: 'DRAW!',
@@ -997,18 +1007,18 @@ this.inputRef.current.focus();
             setTimeout(() => {
                 this.interval = setInterval(this.changeHand, cycle)
             }, cycleWait);
-
+    
         };
     ```
 
     ```
     const onClickBtn = (choice) => () => {
         clearInterval(interval.current);
-
+    
         const myScore = scores[choice];
         const cpuScore = scores[computerChoice(imgCoord)];
         const diff = myScore - cpuScore;
-
+    
         if (diff === 0) {
             setResult('DRAW');
         } else if([-1, 2].includes(diff)) {
@@ -1028,7 +1038,7 @@ this.inputRef.current.focus();
     ```
     render() {
         const { result, score, imgCoord } = this.state;
-
+    
         return (
             <>
                 <div id="computer" style={{ background: `url(https://steemitimages.com/640x0/https://steemitimages.com/DQmVDkcxCxbuJJtwRiGv2xLoKt1eDMoznW1wYZyqJ9gQgCv/가위6%5B1%5D.png) ${imgCoord} 0`}} />
@@ -1105,13 +1115,14 @@ componentWillUnmount() {
 ```
 
 * `PureComponent`(class), `memo`(functional component)
+
     * 
     ```
     // 이렇게 함수를 함수로 한번 더 감싸는 것을 고차함수라 한다
     // memo는 class component에서의 pure component와 같다
     const Ball = memo(({ number }) => {
     let background;
-
+    
     if (number <= 10)
         background='red';
     else if (number <= 20)
@@ -1123,12 +1134,12 @@ componentWillUnmount() {
     else 
         background='green';
     
-
+    
         return (
             <div className="ball" style={{ background }}>{number}</div>
         );
     });
-
+    
     export default Ball;
     ```
 
@@ -1147,10 +1158,86 @@ componentWillUnmount() {
     ```
 
 ### 6-4. useEffect로 업데이트 감지하기
+* Class Component에서 사용하던 Life cycle을 기존의 FC(Functional component)에서도 사용하기 위해 도입된 것이 `Hooks`
+* 그리고 그 Life cycle을 컨트롤할 수 있는 함수가 `useEffect` 이다
+* Example
+```javascript
+useEffect(() => {
+        console.log('component did mount');
+    },[]);
+
+
+useEffect(() => {
+        console.log('useEffect()')
+        for (let i = 0; i<winNumbers.length - 1; i++) {
+            timeouts.current[i] = setTimeout(() => {
+                setWinBalls((prevBalls) => [...prevBalls, winNumbers[i]]);
+                
+            }, (i + 1) * cycle);
+        }
+        timeouts.current[6] = setTimeout(() => {
+            setBonus(winNumbers[6]);
+            setRedo(true);
+        }, cycle * winNumbers.length);
+
+        return () => {
+            timeouts.current.forEach((v) => {
+                clearTimeout(v);
+            });
+        };
+    }, [timeouts.current]); // [] == componentDidMount
+``` 
+* 형태
+```javascript
+useEffect(() => {
+    내용
+},[input이라고 하며, 이 곳에 있는 state에 변경이 일어났을 경우 useEffect 함수의 내용 부분이 재실행된다]);
+```
+* 따라서 기존의 Class Component보다 임의의 state 변경 시 마다 다른 역할을 주기에 보다 용이하다
 
 ### 6-5. useMemo와 useCallback
+* 둘의 공통점은 뭔가를 기록한다는 것
+* useMemo : 함수의 `return` 값을 기록
+    * 
+    ```javascript
+    const lottoNumbers = useMemo(() => getWinNumbers(), []);
+    ```
+* useCallback : 함수 `자체` 를 기록
+    * 
+    ```javascript
+    const onClickRedo = useCallback(() => {
+            console.log('onClickRedo');
+            setWinNumbers(getWinNumbers());
+            setWinBalls([]);
+            setBonus(null);
+            setRedo(false);
+            timeouts.current = [winNumbers];
+        },[]);
+        ```
+* 언제까지? `useEffect` 함수 처럼, `input` 인자에 들어있는 state의 변경 전 까지! 
 
 ### 6-6. Hooks에 대한 자잘한 팁들
+* FC에서의 componentDidMount
+    *
+    ```javascript
+    useEffect(() => {
+            console.log('component did mount');
+        },[]);
+    ```
+* FC에서의 componentDidUpdate 
+    *
+    ```javascript
+    const mounted = useRef(false);
+
+    useEffect(() => {
+        if (!mounted.current) {
+            mounted.current = true;
+        } else {
+            // componentDidUpdate (Mount 말고) 때에만 실행할 함수
+        }
+    },[]);
+    ```
+
 ---
 * `package`
 ```
@@ -1227,4 +1314,3 @@ module.exports = {
   },
 };
 ```
-

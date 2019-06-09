@@ -18,6 +18,7 @@ function getWinNumbers() {
 
 const cycle = 100;
 
+
 class Lotto extends Component {
     state = {
         winNumbers: getWinNumbers(), // 당첨 숫자들

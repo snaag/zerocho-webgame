@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97e38083-b1eb-416d-9b40-8efbaa2d348a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Lotto/Ball.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lotto/Lotto.class.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lotto/Lotto.hooks.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lotto/client.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lotto/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lotto/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lotto/webpack.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,8 +19,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="21">
-                <caret line="1197" selection-start-line="1197" selection-end-line="1197" />
+              <first_editor relative-caret-position="322">
+                <caret line="65" column="3" lean-forward="true" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
               </first_editor>
               <second_editor />
             </state>
@@ -103,12 +97,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560064821756</updated>
-      <workItem from="1560064823840" duration="2785000" />
+      <workItem from="1560064823840" duration="2962000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2785000" />
+    <option name="totallyTimeSpent" value="2962000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -158,8 +152,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="21">
-            <caret line="1197" selection-start-line="1197" selection-end-line="1197" />
+          <first_editor relative-caret-position="322">
+            <caret line="65" column="3" lean-forward="true" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
           </first_editor>
           <second_editor />
         </state>

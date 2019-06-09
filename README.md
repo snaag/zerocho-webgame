@@ -57,11 +57,6 @@
 * 대문자로 시작하는 것은 React component, 소문자로 시작하는 것은 HTML tag 이다
     * `<LikeButton/>`, `<div>` 
 
-
-## ??
-* babel
-* 화살표 함수
----
 ### 1-4. JSX와 바벨(babel)
 * Tag를 사용해서 더 보기 쉽게 할 수 있다
 ```
